@@ -22,6 +22,8 @@ PS:注意在使用时，尽量不要使用中文路径，不然可能导致编�
 
 ![Markdown](https://raw.githubusercontent.com/Qrilee/ApkToolBox/master/screenshots/pic.png)
 
+![Markdown](https://raw.githubusercontent.com/Qrilee/ApkToolBox/master/screenshots/pic2.png)
+
 
 
 
