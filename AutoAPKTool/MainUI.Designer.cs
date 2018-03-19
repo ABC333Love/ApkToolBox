@@ -34,7 +34,7 @@
             this.btn_BuildAndSign = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_dex2jar = new System.Windows.Forms.Button();
-            this.btn_JdGUI = new System.Windows.Forms.Button();
+            this.btn_appInfo = new System.Windows.Forms.Button();
             this.btn_openFile = new System.Windows.Forms.Button();
             this.Log = new System.Windows.Forms.TextBox();
             this.btn_jadx = new System.Windows.Forms.Button();
@@ -53,6 +53,7 @@
             this.博客ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.吾爱破解ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenSourceUrl = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenJarButton = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -124,17 +125,17 @@
             this.btn_dex2jar.UseVisualStyleBackColor = true;
             this.btn_dex2jar.Click += new System.EventHandler(this.btn_dex2jar_Click);
             // 
-            // btn_JdGUI
+            // btn_appInfo
             // 
-            this.btn_JdGUI.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_JdGUI.Location = new System.Drawing.Point(140, 118);
-            this.btn_JdGUI.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btn_JdGUI.Name = "btn_JdGUI";
-            this.btn_JdGUI.Size = new System.Drawing.Size(95, 33);
-            this.btn_JdGUI.TabIndex = 7;
-            this.btn_JdGUI.Text = "打开jar";
-            this.btn_JdGUI.UseVisualStyleBackColor = true;
-            this.btn_JdGUI.Click += new System.EventHandler(this.btn_JdGUI_Click);
+            this.btn_appInfo.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btn_appInfo.Location = new System.Drawing.Point(140, 118);
+            this.btn_appInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btn_appInfo.Name = "btn_appInfo";
+            this.btn_appInfo.Size = new System.Drawing.Size(95, 33);
+            this.btn_appInfo.TabIndex = 7;
+            this.btn_appInfo.Text = "查看App信息";
+            this.btn_appInfo.UseVisualStyleBackColor = true;
+            this.btn_appInfo.Click += new System.EventHandler(this.btn_AppInfo_Click);
             // 
             // btn_openFile
             // 
@@ -243,6 +244,7 @@
             this.配置ToolStripMenuItem,
             this.arm转机器码ToolStripMenuItem,
             this.打开jadxToolStripMenuItem,
+            this.OpenJarButton,
             this.关于ToolStripMenuItem});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
@@ -310,6 +312,13 @@
             this.OpenSourceUrl.Text = "开源地址";
             this.OpenSourceUrl.Click += new System.EventHandler(this.OpenSourceUrl_Click);
             // 
+            // OpenJarButton
+            // 
+            this.OpenJarButton.Name = "OpenJarButton";
+            this.OpenJarButton.Size = new System.Drawing.Size(59, 21);
+            this.OpenJarButton.Text = "打开jar";
+            this.OpenJarButton.Click += new System.EventHandler(this.OpenJarButton_Click);
+            // 
             // MainUI
             // 
             this.AllowDrop = true;
@@ -325,7 +334,7 @@
             this.Controls.Add(this.btn_jadx);
             this.Controls.Add(this.Log);
             this.Controls.Add(this.btn_openFile);
-            this.Controls.Add(this.btn_JdGUI);
+            this.Controls.Add(this.btn_appInfo);
             this.Controls.Add(this.btn_dex2jar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_BuildAndSign);
@@ -342,7 +351,7 @@
             this.MaximizeBox = false;
             this.Name = "MainUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Apktool Box v1.6.4";
+            this.Text = "Apktool Box v1.7.0";
             this.Load += new System.EventHandler(this.MainUI_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
@@ -362,7 +371,7 @@
 		private System.Windows.Forms.Button btn_BuildAndSign;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Button btn_dex2jar;
-		private System.Windows.Forms.Button btn_JdGUI;
+		private System.Windows.Forms.Button btn_appInfo;
 		private System.Windows.Forms.Button btn_openFile;
 		private System.Windows.Forms.TextBox Log;
 		private System.Windows.Forms.Button btn_jadx;
@@ -378,6 +387,7 @@
         private System.Windows.Forms.ToolStripMenuItem arm转机器码ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 打开jadxToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OpenSourceUrl;
+        private System.Windows.Forms.ToolStripMenuItem OpenJarButton;
     }
 }
 

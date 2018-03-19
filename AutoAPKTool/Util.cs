@@ -19,7 +19,7 @@
 
         public static string GetPackageNew(string apk)
         {
-            return string.Format("-jar "+Constants.ApkFile +" "+ apk);
+            return string.Format("-jar " + Constants.ApkFile + " " + apk);
         }
 
         public static string Signapk(string keypath, string keyw, string apkpath, string ais)
@@ -78,7 +78,13 @@
 
         public static string GetSignArg(string apkName)
         {
-            return string.Format("-jar " + Constants.ApkSigner + " -keystore " + Constants.KeyStore + "  -alias androiddebugkey -pswd android " + apkName);
+            return string.Format("-jar " + Constants.ApkSigner + " -keystore " + Constants.KeyStore +
+                                 "  -alias androiddebugkey -pswd android " + apkName);
+        }
+
+        public static string GetAppInfo(string inputApk)
+        {
+            return string.Format("-jar " + Constants.ApkParser + " " + inputApk);
         }
     }
 }

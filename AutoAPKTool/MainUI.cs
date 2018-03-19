@@ -16,11 +16,13 @@ namespace AutoAPKTool
         private string _keyword = "";
         private string _path = "";
         private string _alispass = "";
+        private SynchronizationContext m_SyncContext = null;
 
         public MainUI()
         {
             InitializeComponent();
             StartUp();
+            m_SyncContext = SynchronizationContext.Current;
         }
 
         private static void StartUp()
@@ -258,14 +260,6 @@ namespace AutoAPKTool
 
         private void btn_JdGUI_Click(object sender, EventArgs e)
         {
-            var path = this.open_path.Text;
-            if (!File.Exists(path) || Path.GetExtension(path) != ".jar")
-            {
-                MessageBox.Show(Resources.no_find_jar, Resources.info);
-                return;
-            }
-
-            new Thread(() => { Excute(ExcuteCmd, "/c " + Constants.JarJdGui + " " + path, false); }).Start();
         }
 
         private void btn_openFile_Click(object sender, EventArgs e)
@@ -387,6 +381,14 @@ namespace AutoAPKTool
             }
         }
 
+
+        public void OpenAppInfoUi(string str)
+        {
+            AppInfoUI ui = new AppInfoUI();
+            ui.setAppInfo(str);
+            ui.Show();
+        }
+
         public delegate void ChangeTextBoxValue(string str);
 
         private void GetString()
@@ -398,6 +400,17 @@ namespace AutoAPKTool
             }
 
             SetText(sb);
+        }
+
+        private void GetStringRef()
+        {
+            var sb = "";
+            using (new StringReader(_apkinfo))
+            {
+                sb = sb + _apkinfo;
+            }
+
+            m_SyncContext.Post(delegate { OpenAppInfoUi(sb); }, null);
         }
 
 
@@ -444,6 +457,7 @@ namespace AutoAPKTool
         private void GetLauncher(object sender, EventArgs e)
         {
             var text = this.open_path.Text;
+
             if (!File.Exists(text) || Path.GetExtension(text) != ".apk")
             {
                 MessageBox.Show(Resources.no_find_apk, Resources.info);
@@ -527,6 +541,36 @@ namespace AutoAPKTool
         private void OpenSourceUrl_Click(object sender, EventArgs e)
         {
             Process.Start("https://github.com/Qrilee/ApkToolBox");
+        }
+
+        private void OpenJarButton_Click(object sender, EventArgs e)
+        {
+            var path = this.open_path.Text;
+            if (!File.Exists(path) || Path.GetExtension(path) != ".jar")
+            {
+                MessageBox.Show(Resources.no_find_jar, Resources.info);
+                return;
+            }
+
+            new Thread(() => { Excute(ExcuteCmd, "/c " + Constants.JarJdGui + " " + path, false); }).Start();
+        }
+
+        private void btn_AppInfo_Click(object sender, EventArgs e)
+        {
+            var path = this.open_path.Text;
+            if (!File.Exists(path) || Path.GetExtension(path) != ".apk")
+            {
+                MessageBox.Show(Resources.no_find_apk, Resources.info);
+                return;
+            }
+
+            var arg = Util.GetAppInfo(path);
+
+            new Thread(() =>
+            {
+                Excute(ExcuteJava, arg, false);
+                GetStringRef();
+            }).Start();
         }
     }
 }
